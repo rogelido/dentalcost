@@ -12,9 +12,19 @@
  * @author Pere
  */
 class producto {
-	function __construct($id, $nombre, $impuesto){
-		$this->textToSearch = $textToSearch;
-		$this->getConcretStsTableNames();
+	
+	private $id;
+	private $nombre;
+	private $impuesto;
+	private $precio;
+	private $marca;
+	
+	function __construct($id, $nombre, $precio, $impuesto, $marca){
+		$this->id = $id;
+		$this->nombre = $nombre;
+		$this->precio = $precio;
+		$this->impuesto = $impuesto;
+		$this->marca = $marca;
 	}
 	
 	public static function obtenDescuento(){
@@ -26,8 +36,13 @@ class producto {
 		$rows = getTable($SQL);
 		$resp = array();
 		foreach($rows as $row){
-			$resp[] = new _self($row['id'], $row['nombre'], $row['impuesto']);
+			$marca = new marca($row['marca_id'], $row['marcas_nombre'], $row['descuentos_cantidad']);
+			$resp[] = new self($row['id'], $row['nombre'], $row['precio'], $row['impuesto'], $marca);
 		}
-		return resp;
+		return $resp;
+	}
+	
+	public function toString(){
+		return $this->nombre." (".$this->marca->toString().") ".$this->precio. " €";
 	}
 }

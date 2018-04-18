@@ -81,7 +81,8 @@ function getTable($query) {
 function getQuery($query){
 	switch($query){
 		case "Productos":
-			$SQL = "SELECT * FROM productos";
+			$SQL = "SELECT productos.*, marcas.nombre AS marcas_nombre, descuentos.cantidad AS descuentos_cantidad "
+				. "FROM productos LEFT JOIN marcas ON productos.marca_id = marcas.id LEFT JOIN descuentos on productos.descuento_id = descuentos.id";
 			break;
 		default:
 			break;
