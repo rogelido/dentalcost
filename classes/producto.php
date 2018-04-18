@@ -37,7 +37,8 @@ class producto {
 		$resp = array();
 		foreach($rows as $row){
 			$marca = new marca($row['marca_id'], $row['marcas_nombre'], $row['descuentos_cantidad']);
-			$resp[] = new self($row['id'], $row['nombre'], $row['precio'], $row['impuesto'], $marca);
+			$impuesto = new impuesto($row['impuesto_id'], $row['impuestos_nombre'], $row['porcentaje']);
+			$resp[] = new self($row['id'], $row['nombre'], $row['precio'], $impuesto, $marca);
 		}
 		return $resp;
 	}

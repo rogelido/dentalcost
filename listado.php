@@ -2,6 +2,7 @@
 include('include/config.php');
 include('classes/producto.php');
 include('classes/marca.php');
+include('classes/impuesto.php');
 include('classes/databasePDO.php');
 initSQL($config);
 

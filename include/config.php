@@ -3,5 +3,5 @@ $config = array();
 $config['bdaHost'] = 'localhost';
 $config['bdaName'] = 'dentalcost';
 $config['bdaUser'] = 'root';
-$config['bdaPass'] = 'nopandel';
+$config['bdaPass'] = '';
 $config['charset'] = 'utf8';

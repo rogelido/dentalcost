@@ -72,7 +72,7 @@ function getTable($query) {
 	$qres=$msq->query($query);
 	if ($qres===false) {
 		$k = $msq->errorInfo();
-		throw new PDOException("Unable to get rows"); //: ".$query."; ".$k."\n");
+		throw new PDOException("Imposible obtener columnas"); //: ".$query."; ".$k."\n");
 	}
 	$res = $qres->fetchAll(PDO::FETCH_ASSOC);
 	return $res;
@@ -81,8 +81,10 @@ function getTable($query) {
 function getQuery($query){
 	switch($query){
 		case "Productos":
-			$SQL = "SELECT productos.*, marcas.nombre AS marcas_nombre, descuentos.cantidad AS descuentos_cantidad "
-				. "FROM productos LEFT JOIN marcas ON productos.marca_id = marcas.id LEFT JOIN descuentos on productos.descuento_id = descuentos.id";
+			$SQL = "SELECT productos.*, impuestos.porcentaje, impuestos.nombre AS impuestos_nombre, marcas.nombre AS marcas_nombre, descuentos.cantidad AS descuentos_cantidad "
+				. "FROM productos LEFT JOIN marcas ON productos.marca_id = marcas.id "
+				. "LEFT JOIN impuestos ON impuesto_id = impuestos.id "
+				. "LEFT JOIN descuentos ON productos.descuento_id = descuentos.id";
 			break;
 		default:
 			break;
